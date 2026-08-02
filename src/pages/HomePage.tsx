@@ -52,8 +52,8 @@ export function HomePage() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <Link to="/events" className="news-panel__link">
-            View all updates
+          <Link to="/newsletter" className="news-panel__link">
+            View newsletter
           </Link>
         </aside>
       </section>

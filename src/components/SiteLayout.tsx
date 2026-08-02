@@ -7,8 +7,7 @@ const mainLinks = [
   { label: 'Home', to: '/' },
   { label: 'The Society', to: '/society' },
   { label: 'Joining', to: '/joining' },
-  { label: 'Scholarships', to: '/scholarships' },
-  { label: 'Education', to: '/education' },
+  { label: 'Newsletter', to: '/newsletter' },
   { label: 'Events', to: '/events' },
   { label: 'Contact', to: '/contact' },
 ]

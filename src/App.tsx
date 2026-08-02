@@ -2,11 +2,10 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { SiteLayout } from './components/SiteLayout'
 import { ContactPage } from './pages/ContactPage'
-import { EducationPage } from './pages/EducationPage'
 import { EventsPage } from './pages/EventsPage'
 import { HomePage } from './pages/HomePage'
 import { JoiningPage } from './pages/JoiningPage'
-import { ScholarshipsPage } from './pages/ScholarshipsPage'
+import { NewsletterPage } from './pages/NewsletterPage.tsx'
 import { SocietyPage } from './pages/SocietyPage'
 
 function App() {
@@ -17,8 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/society" element={<SocietyPage />} />
           <Route path="/joining" element={<JoiningPage />} />
-          <Route path="/scholarships" element={<ScholarshipsPage />} />
-          <Route path="/education" element={<EducationPage />} />
+          <Route path="/newsletter" element={<NewsletterPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
