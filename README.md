@@ -1,78 +1,135 @@
-# React + TypeScript + Vite
+# BU Law Society Website (Development in progress)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite website for Brighton University Law Society.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- TypeScript
+- Vite
+- React Router
+- ESLint
 
-## React Compiler
+## Getting started
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Requirements:
 
-Note: This will impact Vite dev & build performances.
+- Node.js 20+ recommended
+- npm
 
-## Expanding the ESLint configuration
+Install dependencies:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev
 ```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Project structure
+
+```text
+public/
+  content/
+    events.json
+    newsletters.json
+src/
+  components/
+    SiteLayout.tsx
+    SocietyMemberCard.tsx
+  pages/
+    HomePage.tsx
+    SocietyPage.tsx
+    JoiningPage.tsx
+    NewsletterPage.tsx
+    EventsPage.tsx
+    ContactPage.tsx
+  App.tsx
+```
+
+## Routes
+
+The router is configured in `src/App.tsx`.
+
+- `/` -> Home
+- `/society` -> The Society
+- `/joining` -> Joining
+- `/newsletter` -> Newsletter viewer
+- `/events` -> Events
+- `/contact` -> Contact
+- `*` -> Redirects to `/`
+
+## Content updates (non-developers)
+
+Website content is loaded from JSON files in `public/content`:
+
+- `public/content/events.json`
+- `public/content/newsletters.json`
+
+These files can be updated without changing React code.
+
+For detailed editor-friendly instructions, see `public/content/README.md`.
+
+## Events data format
+
+Each event entry uses:
+
+```json
+{
+  "date": "12 OCT",
+  "title": "Autumn Networking Reception",
+  "detail": "Meet local chambers, firms, and legal aid organisations.",
+  "location": "Mithras House, Room 2.14"
+}
+```
+
+`location` is optional.
+
+## Newsletter data format
+
+Each newsletter entry uses:
+
+```json
+{
+  "date": "July 2026",
+  "title": "Summer Careers Briefing",
+  "summary": "Internship updates, legal clinic opportunities, and exam support information.",
+  "fileUrl": "/newsletters/july-2026.pdf"
+}
+```
+
+`fileUrl` is optional.
+
+Notes:
+
+- Newsletters are grouped automatically by Season + Year using the `date` value.
+- For in-site previews, use direct PDF URLs or paths under `public` (for example `/newsletters/july-2026.pdf`).
+- The viewer appends PDF hash options to hide toolbar/navigation panes when possible.
+
+## Deployment notes
+
+- Static assets in `public` are served from the site root.
+- Relative content fetches (`/content/events.json`, `/content/newsletters.json`) are used by the app.
+- Ensure newsletter PDF files referenced by `fileUrl` are publicly accessible.
 
