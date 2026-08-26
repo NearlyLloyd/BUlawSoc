@@ -7,6 +7,13 @@ type EventItem = {
   location?: string
 }
 
+function slugifyTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 export function EventsPage() {
   const [events, setEvents] = useState<EventItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -59,7 +66,7 @@ export function EventsPage() {
 
       <div className="events-grid">
         {events.map((event) => (
-          <article className="event-card" key={event.title}>
+          <article className="event-card" key={event.title} id={slugifyTitle(event.title)}>
             <p className="event-card__date">{event.date}</p>
             <h2>{event.title}</h2>
             <p>{event.detail}</p>
