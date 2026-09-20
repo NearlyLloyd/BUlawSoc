@@ -1,0 +1,59 @@
+.page-shell {
+  padding: clamp(34px, 6vw, 60px) clamp(20px, 5vw, 72px) clamp(48px, 8vw, 76px);
+  background: #ffffff;
+}
+
+.page-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--brighton-cyan);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.page-shell h1 {
+  margin: 10px 0 14px;
+  max-width: 14ch;
+}
+
+.page-shell p {
+  max-width: 68ch;
+  color: var(--ink-soft);
+}
+
+.page-shell p + p {
+  margin-top: 14px;
+}
+
+.content-admin-note {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 8px 10px;
+  font-size: 0.92rem;
+  border: 1px dashed var(--border);
+  background: #f7fcff;
+}
+
+.page-list {
+  margin: 18px 0 26px;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.page-cta {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background: var(--brighton-cyan);
+  padding: 11px 18px;
+  font-weight: 700;
+}
+
+.content-meta-date {
+  margin: 0;
+  color: var(--brighton-cyan);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}

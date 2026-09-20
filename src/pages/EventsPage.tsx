@@ -53,9 +53,6 @@ export function EventsPage() {
     <main className="page-shell">
       <p className="page-eyebrow">Events</p>
       <h1>What is coming up</h1>
-      <p className="content-admin-note">
-        Update events by editing <strong>public/content/events.json</strong>.
-      </p>
 
       {isLoading && <p>Loading events...</p>}
       {error && <p>{error}</p>}
@@ -67,7 +64,7 @@ export function EventsPage() {
       <div className="events-grid">
         {events.map((event) => (
           <article className="event-card" key={event.title} id={slugifyTitle(event.title)}>
-            <p className="event-card__date">{event.date}</p>
+            <p className="content-meta-date">{event.date}</p>
             <h2>{event.title}</h2>
             <p>{event.detail}</p>
             {event.location && <p className="event-card__location">{event.location}</p>}

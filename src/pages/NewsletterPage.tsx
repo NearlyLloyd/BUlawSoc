@@ -216,10 +216,6 @@ export function NewsletterPage() {
     <main className="page-shell">
       <p className="page-eyebrow">Newsletter</p>
       <h1>Latest society updates</h1>
-      <p className="content-admin-note">
-        Update newsletters by editing <strong>public/content/newsletters.json</strong>. Use
-        direct PDF links (or public folder paths) for in-site preview.
-      </p>
 
       {isLoading && <p>Loading newsletters...</p>}
       {error && <p>{error}</p>}
@@ -279,7 +275,7 @@ export function NewsletterPage() {
           <article className="newsletter-viewer">
             <header className="newsletter-viewer__header">
               <div>
-                <p className="event-card__date">{selectedNewsletter.date}</p>
+                <p className="content-meta-date">{selectedNewsletter.date}</p>
                 <h2>{selectedNewsletter.title}</h2>
                 <p>{selectedNewsletter.summary}</p>
               </div>

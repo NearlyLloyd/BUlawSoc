@@ -1,0 +1,215 @@
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(460px, 63vh, 680px);
+  background: #101923;
+  overflow: hidden;
+}
+
+.home-hero__slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.home-hero__slide {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 900ms ease, transform 6s ease;
+}
+
+.home-hero__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.home-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(88deg, rgba(16, 25, 35, 0.84) 10%, rgba(12, 16, 22, 0.54) 56%, rgba(0, 0, 0, 0.44) 100%),
+    radial-gradient(circle at 14% 84%, rgba(22, 169, 207, 0.35), transparent 44%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18));
+  z-index: 1;
+}
+
+.home-hero__strap {
+  position: absolute;
+  top: clamp(38px, 8vw, 64px);
+  right: clamp(20px, 5vw, 72px);
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.3vw, 2.05rem);
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  z-index: 2;
+}
+
+.home-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(42px, 7vw, 76px);
+  color: #ffffff;
+  max-width: 580px;
+  display: grid;
+  gap: 18px;
+  animation: fade-rise 700ms ease-out;
+}
+
+.home-hero__content h1 {
+  color: #ffffff;
+  margin: 0;
+  line-height: 0.96;
+  max-width: 5.5ch;
+  font-size: clamp(3.25rem, 8vw, 5.4rem);
+}
+
+.home-hero__content p {
+  margin: 0;
+  max-width: 47ch;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-button {
+  display: inline-flex;
+  justify-self: start;
+  margin-top: 6px;
+  text-decoration: none;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.84);
+  padding: 11px 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.hero-button:hover {
+  background: var(--brighton-cyan);
+  border-color: var(--brighton-cyan);
+  color: #ffffff;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  opacity: 0.72;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hero-dot.is-active {
+  background: #ffffff;
+  opacity: 1;
+}
+
+.hero-dot:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.home-intro {
+  padding: clamp(30px, 5vw, 48px) clamp(20px, 5vw, 72px) clamp(40px, 7vw, 58px);
+  display: grid;
+  grid-template-columns: 1.7fr minmax(220px, 340px);
+  gap: clamp(18px, 4vw, 30px);
+  align-items: start;
+  background: #ffffff;
+}
+
+.home-intro h2 {
+  margin: 0;
+  max-width: 24ch;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  color: var(--ink);
+}
+
+.home-intro p {
+  margin-top: 16px;
+  max-width: 64ch;
+  color: var(--ink-soft);
+}
+
+.news-panel {
+  background: var(--brighton-cyan-tint);
+  border-left: 6px solid var(--brighton-cyan);
+  padding: 20px 18px;
+}
+
+.news-panel h3 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.news-panel ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.news-panel li {
+  color: var(--ink);
+}
+
+.news-panel li a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 180ms ease;
+}
+
+.news-panel li a:hover,
+.news-panel li a:focus-visible {
+  border-color: var(--ink);
+}
+
+.news-panel__link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .home-hero__strap {
+    position: static;
+    padding: 28px clamp(20px, 5vw, 72px) 0;
+  }
+
+  .home-intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-hero__content h1 {
+    max-width: 100%;
+  }
+}

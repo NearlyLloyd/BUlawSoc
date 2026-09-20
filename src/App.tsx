@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import './App.css'
+import './styles/app.css'
 import { SiteLayout } from './components/SiteLayout'
 import { ContactPage } from './pages/ContactPage'
 import { EventsPage } from './pages/EventsPage'

@@ -1,0 +1,24 @@
+.events-grid {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.event-card {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  background: #f7fcff;
+}
+
+.event-card h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.event-card__location {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+}

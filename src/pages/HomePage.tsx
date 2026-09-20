@@ -63,8 +63,17 @@ function parseMonthYearToTimestamp(dateLabel: string): number {
   return Number.isNaN(parsed) ? Number.NEGATIVE_INFINITY : parsed
 }
 
+const heroBackgroundImages = [
+  '/content/hero/learn-from-yesterday-1.jpg',
+  '/content/hero/learn-from-yesterday-2.jpg',
+  '/content/hero/learn-from-yesterday-3.jpg',
+]
+
+const heroSlideIntervalMs = 10000
+
 export function HomePage() {
   const [updates, setUpdates] = useState<NewsUpdate[]>([])
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0)
 
   useEffect(() => {
     async function loadUpdates() {
@@ -110,6 +119,16 @@ export function HomePage() {
     void loadUpdates()
   }, [])
 
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setActiveHeroSlide((current) => (current + 1) % heroBackgroundImages.length)
+    }, heroSlideIntervalMs)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [activeHeroSlide])
+
   const latestUpdates = useMemo(
     () => [...updates].sort((a, b) => b.timestamp - a.timestamp).slice(0, 3),
     [updates],
@@ -118,6 +137,16 @@ export function HomePage() {
   return (
     <main>
       <section className="home-hero">
+        <div className="home-hero__slides" aria-hidden="true">
+          {heroBackgroundImages.map((imageUrl, index) => (
+            <div
+              key={imageUrl}
+              className={`home-hero__slide${index === activeHeroSlide ? ' is-active' : ''}`}
+              style={{ backgroundImage: `url('${imageUrl}')` }}
+            />
+          ))}
+        </div>
+
         <div className="home-hero__overlay" />
 
         <p className="home-hero__strap">We stand for your ambition</p>
@@ -133,10 +162,18 @@ export function HomePage() {
             Join us
           </Link>
 
-          <div className="hero-dots" aria-hidden="true">
-            <span className="is-active" />
-            <span />
-            <span />
+          <div className="hero-dots" role="tablist" aria-label="Hero slideshow controls">
+            {heroBackgroundImages.map((imageUrl, index) => (
+              <button
+                key={imageUrl}
+                type="button"
+                role="tab"
+                className={`hero-dot${index === activeHeroSlide ? ' is-active' : ''}`}
+                aria-label={`Show slide ${index + 1}`}
+                aria-selected={index === activeHeroSlide}
+                onClick={() => setActiveHeroSlide(index)}
+              />
+            ))}
           </div>
         </div>
       </section>

@@ -1,0 +1,14 @@
+.society-members {
+  margin-top: clamp(34px, 6vw, 56px);
+}
+
+.society-members h2 {
+  margin: 0 0 18px;
+}
+
+.society-members__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 760px;
+}
