@@ -22,7 +22,7 @@ export function EventsPage() {
   useEffect(() => {
     async function loadEvents() {
       try {
-        const response = await fetch('/content/events.json')
+        const response = await fetch(`${import.meta.env.BASE_URL}content/events.json`)
 
         if (!response.ok) {
           throw new Error('Could not load events content.')

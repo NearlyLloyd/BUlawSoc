@@ -63,10 +63,10 @@ function normalizePdfUrl(fileUrl?: string): string | null {
   }
 
   if (trimmed.startsWith('/')) {
-    return encodeURI(trimmed)
+    return encodeURI(`${import.meta.env.BASE_URL}${trimmed.replace(/^\//, '')}`)
   }
 
-  return encodeURI(`/${trimmed}`)
+  return encodeURI(`${import.meta.env.BASE_URL}${trimmed}`)
 }
 
 function buildPdfPreviewUrl(fileUrl: string): string {
@@ -139,7 +139,7 @@ export function NewsletterPage() {
   useEffect(() => {
     async function loadNewsletters() {
       try {
-        const response = await fetch('/content/newsletters.json')
+        const response = await fetch(`${import.meta.env.BASE_URL}content/newsletters.json`)
 
         if (!response.ok) {
           throw new Error('Could not load newsletter content.')

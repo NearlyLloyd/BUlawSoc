@@ -64,9 +64,9 @@ function parseMonthYearToTimestamp(dateLabel: string): number {
 }
 
 const heroBackgroundImages = [
-  '/content/hero/learn-from-yesterday-1.jpg',
-  '/content/hero/learn-from-yesterday-2.jpg',
-  '/content/hero/learn-from-yesterday-3.jpg',
+  `${import.meta.env.BASE_URL}content/hero/learn-from-yesterday-1.jpg`,
+  `${import.meta.env.BASE_URL}content/hero/learn-from-yesterday-2.jpg`,
+  `${import.meta.env.BASE_URL}content/hero/learn-from-yesterday-3.jpg`,
 ]
 
 const heroSlideIntervalMs = 10000
@@ -79,8 +79,8 @@ export function HomePage() {
     async function loadUpdates() {
       try {
         const [eventsResponse, newslettersResponse] = await Promise.all([
-          fetch('/content/events.json'),
-          fetch('/content/newsletters.json'),
+          fetch(`${import.meta.env.BASE_URL}content/events.json`),
+          fetch(`${import.meta.env.BASE_URL}content/newsletters.json`),
         ])
 
         if (!eventsResponse.ok || !newslettersResponse.ok) {
