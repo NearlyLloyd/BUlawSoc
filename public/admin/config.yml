@@ -7,7 +7,7 @@ backend:
 
 site_url: https://nearlylloyd.github.io/BUlawSoc/
 display_url: https://nearlylloyd.github.io/BUlawSoc/
-logo_url: /BUlawSoc/favicon.ico
+logo_url: /BUlawSoc/icons.svg
 
 media_folder: public/newsletters
 public_folder: /newsletters
