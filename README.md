@@ -142,16 +142,8 @@ Notes:
 - Relative content fetches (`/content/events.json`, `/content/newsletters.json`) are used by the app.
 - Ensure newsletter PDF files referenced by `fileUrl` are publicly accessible.
 
-## Decap OAuth alignment
-
-If Decap login opens GitHub but returns to the login screen, verify that the worker runtime variables and admin config values are aligned exactly.
-
-Worker runtime variables (Cloudflare):
-
-- `GITHUB_CLIENT_ID`: GitHub OAuth app client id
-- `GITHUB_CLIENT_SECRET`: GitHub OAuth app client secret
-- `OAUTH_REDIRECT_URI`: `https://decap-auth.lloydfalltrick12.workers.dev/callback`
-- `ALLOWED_ORIGINS`: `https://nearlylloyd.github.io,nearlylloyd.github.io`
+## Decap OAuth + cloudflare workers
+dynamically add content without entering the codebase
 
 GitHub OAuth app settings:
 
