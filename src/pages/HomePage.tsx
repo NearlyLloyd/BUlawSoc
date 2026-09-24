@@ -11,6 +11,14 @@ type NewsletterItem = {
   title: string
 }
 
+type EventsContent = {
+  events?: EventItem[]
+}
+
+type NewslettersContent = {
+  newsletters?: NewsletterItem[]
+}
+
 type NewsUpdate = {
   id: string
   title: string
@@ -41,7 +49,7 @@ function slugifyTitle(title: string): string {
 }
 
 function parseEventDateToTimestamp(dateLabel: string): number {
-  const match = dateLabel.match(/^(\d{1,2})\s+([A-Za-z]{3})$/)
+  const match = dateLabel.match(/^(\d{1,2})\s+([A-Za-z]{3})(?:\s+(\d{4}))?$/)
 
   if (!match) {
     return Number.NEGATIVE_INFINITY
@@ -54,7 +62,7 @@ function parseEventDateToTimestamp(dateLabel: string): number {
     return Number.NEGATIVE_INFINITY
   }
 
-  const year = new Date().getFullYear()
+  const year = match[3] ? Number(match[3]) : new Date().getFullYear()
   return new Date(year, monthIndex, day).getTime()
 }
 
@@ -92,8 +100,16 @@ export function HomePage() {
           newslettersResponse.json(),
         ])) as [unknown, unknown]
 
-        const eventUpdates = Array.isArray(eventsData)
-          ? (eventsData as EventItem[]).map((item) => ({
+        const parsedEvents = Array.isArray(eventsData)
+          ? (eventsData as EventItem[])
+          : (eventsData as EventsContent).events
+
+        const parsedNewsletters = Array.isArray(newslettersData)
+          ? (newslettersData as NewsletterItem[])
+          : (newslettersData as NewslettersContent).newsletters
+
+        const eventUpdates = Array.isArray(parsedEvents)
+          ? parsedEvents.map((item) => ({
               id: `event-${slugifyTitle(item.title)}`,
               title: item.title,
               href: `/events#${slugifyTitle(item.title)}`,
@@ -101,8 +117,8 @@ export function HomePage() {
             }))
           : []
 
-        const newsletterUpdates = Array.isArray(newslettersData)
-          ? (newslettersData as NewsletterItem[]).map((item) => ({
+        const newsletterUpdates = Array.isArray(parsedNewsletters)
+          ? parsedNewsletters.map((item) => ({
               id: `newsletter-${slugifyTitle(item.title)}`,
               title: item.title,
               href: '/newsletter',

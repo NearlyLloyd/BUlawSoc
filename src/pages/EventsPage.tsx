@@ -7,6 +7,10 @@ type EventItem = {
   location?: string
 }
 
+type EventsContent = {
+  events?: EventItem[]
+}
+
 function slugifyTitle(title: string): string {
   return title
     .toLowerCase()
@@ -30,11 +34,15 @@ export function EventsPage() {
 
         const data: unknown = await response.json()
 
-        if (!Array.isArray(data)) {
+        const parsedEvents = Array.isArray(data)
+          ? (data as EventItem[])
+          : (data as EventsContent).events
+
+        if (!Array.isArray(parsedEvents)) {
           throw new Error('Events content is in an invalid format.')
         }
 
-        setEvents(data as EventItem[])
+        setEvents(parsedEvents)
       } catch (loadError) {
         setError(
           loadError instanceof Error

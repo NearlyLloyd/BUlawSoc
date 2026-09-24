@@ -7,6 +7,10 @@ type NewsletterItem = {
   fileUrl?: string
 }
 
+type NewslettersContent = {
+  newsletters?: NewsletterItem[]
+}
+
 type NewsletterEntry = NewsletterItem & {
   id: number
   groupLabel: string
@@ -147,11 +151,15 @@ export function NewsletterPage() {
 
         const data: unknown = await response.json()
 
-        if (!Array.isArray(data)) {
+        const parsedNewsletters = Array.isArray(data)
+          ? (data as NewsletterItem[])
+          : (data as NewslettersContent).newsletters
+
+        if (!Array.isArray(parsedNewsletters)) {
           throw new Error('Newsletter content is in an invalid format.')
         }
 
-        const loadedNewsletters = (data as NewsletterItem[]).map((item, index) => ({
+        const loadedNewsletters = parsedNewsletters.map((item, index) => ({
           ...item,
           id: index,
           groupLabel: getSeasonYearLabel(item.date),

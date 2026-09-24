@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: nearlylloyd/BUlawSoc
+  branch: main
+  base_url: https://decap-auth.lloydfalltrick12.workers.dev
+  auth_endpoint: auth
+
+site_url: https://nearlylloyd.github.io/BUlawSoc/
+display_url: https://nearlylloyd.github.io/BUlawSoc/
+logo_url: /BUlawSoc/favicon.ico
+
+media_folder: public/newsletters
+public_folder: /newsletters
+
+collections:
+  - name: site_content
+    label: Site Content
+    files:
+      - label: Events
+        name: events
+        file: public/content/events.json
+        format: json
+        fields:
+          - label: Events
+            name: events
+            widget: list
+            summary: '{{fields.date}} - {{fields.title}}'
+            fields:
+              - { label: Date, name: date, widget: string, hint: 'Example: 12 OCT 2026' }
+              - { label: Title, name: title, widget: string }
+              - { label: Detail, name: detail, widget: text }
+              - { label: Location, name: location, widget: string, required: false }
+
+      - label: Newsletters
+        name: newsletters
+        file: public/content/newsletters.json
+        format: json
+        fields:
+          - label: Newsletters
+            name: newsletters
+            widget: list
+            summary: '{{fields.date}} - {{fields.title}}'
+            fields:
+              - { label: Date, name: date, widget: string, hint: 'Example: July 2026' }
+              - { label: Title, name: title, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              -
+                label: PDF
+                name: fileUrl
+                widget: file
+                required: false
+                hint: 'Upload a PDF newsletter file.'
+                media_library:
+                  config:
+                    multiple: false

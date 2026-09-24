@@ -1,14 +1,16 @@
-[
-  {
-    "date": "July 2026",
-    "title": "Summer Careers Briefing",
-    "summary": "Internship updates, legal clinic opportunities, and exam support information.",
-    "fileUrl": "/newsletters/sample-500kb.pdf"
-  },
-  {
-    "date": "June 2026",
-    "title": "Mooting Term Highlights",
-    "summary": "Term recap, student awards, and the autumn competition calendar.",
-    "fileUrl": "/newsletters/sample-1mb.pdf"
-  }
-]
+{
+  "newsletters": [
+    {
+      "date": "July 2026",
+      "title": "Summer Careers Briefing",
+      "summary": "Internship updates, legal clinic opportunities, and exam support information.",
+      "fileUrl": "/newsletters/sample-500kb.pdf"
+    },
+    {
+      "date": "June 2026",
+      "title": "Mooting Term Highlights",
+      "summary": "Term recap, student awards, and the autumn competition calendar.",
+      "fileUrl": "/newsletters/sample-1mb.pdf"
+    }
+  ]
+}

@@ -88,19 +88,24 @@ Website content is loaded from JSON files in `public/content`:
 - `public/content/newsletters.json`
 
 These files can be updated without changing React code.
+Admins can also update them in the Decap CMS admin panel at `/admin/`.
 
 For detailed editor-friendly instructions, see `public/content/README.md`.
 
 ## Events data format
 
-Each event entry uses:
+Events are stored under the `events` key:
 
 ```json
 {
-  "date": "12 OCT",
-  "title": "Autumn Networking Reception",
-  "detail": "Meet local chambers, firms, and legal aid organisations.",
-  "location": "Mithras House, Room 2.14"
+  "events": [
+    {
+      "date": "12 OCT 2026",
+      "title": "Autumn Networking Reception",
+      "detail": "Meet local chambers, firms, and legal aid organisations.",
+      "location": "Mithras House, Room 2.14"
+    }
+  ]
 }
 ```
 
@@ -108,14 +113,18 @@ Each event entry uses:
 
 ## Newsletter data format
 
-Each newsletter entry uses:
+Newsletters are stored under the `newsletters` key:
 
 ```json
 {
-  "date": "July 2026",
-  "title": "Summer Careers Briefing",
-  "summary": "Internship updates, legal clinic opportunities, and exam support information.",
-  "fileUrl": "/newsletters/july-2026.pdf"
+  "newsletters": [
+    {
+      "date": "July 2026",
+      "title": "Summer Careers Briefing",
+      "summary": "Internship updates, legal clinic opportunities, and exam support information.",
+      "fileUrl": "/newsletters/july-2026.pdf"
+    }
+  ]
 }
 ```
 
