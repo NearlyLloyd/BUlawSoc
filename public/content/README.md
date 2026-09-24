@@ -8,10 +8,15 @@ The CMS edits these files:
 
 - `public/content/events.json`
 - `public/content/newsletters.json`
+- `public/content/committee.json`
 
 It also uploads newsletter PDFs to:
 
 - `public/newsletters/`
+
+And committee headshots to:
+
+- `public/content/committee/`
 
 ## If you edit JSON manually
 
@@ -40,6 +45,21 @@ It also uploads newsletter PDFs to:
       "title": "Newsletter title",
       "summary": "One short summary sentence",
       "fileUrl": "/newsletters/july-2026.pdf"
+    }
+  ]
+}
+```
+
+### Committee format
+
+```json
+{
+  "members": [
+    {
+      "name": "Full name",
+      "role": "Committee role",
+      "description": "Short bio",
+      "image": "/content/committee/example.jpg"
     }
   ]
 }

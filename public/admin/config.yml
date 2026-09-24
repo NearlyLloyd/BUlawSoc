@@ -31,6 +31,26 @@ collections:
               - { label: Detail, name: detail, widget: text }
               - { label: Location, name: location, widget: string, required: false }
 
+      - label: Committee
+        name: committee
+        file: public/content/committee.json
+        format: json
+        fields:
+          - label: Committee Members
+            name: members
+            widget: list
+            summary: '{{fields.role}} - {{fields.name}}'
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Description, name: description, widget: text }
+              -
+                label: Headshot
+                name: image
+                widget: image
+                media_folder: /public/content/committee
+                public_folder: /content/committee
+
       - label: Newsletters
         name: newsletters
         file: public/content/newsletters.json

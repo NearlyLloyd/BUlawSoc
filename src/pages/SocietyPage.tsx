@@ -1,28 +1,57 @@
+import { useEffect, useState } from 'react'
+
 import { SocietyMemberCard } from '../components/SocietyMemberCard'
 
-import cyriloHeadshot from '../assets/headshots/cyrilo.png'
-import nackanHeadshot from '../assets/headshots/nacken.jpg'
+type CommitteeMember = {
+  name: string
+  role: string
+  description: string
+  image: string
+}
 
-const societyMembers = [
-  {
-    name: 'Näckan Flanagan',
-    position: 'President',
-    headshotUrl:
-      nackanHeadshot,
-    description:
-      'Leads society strategy and partnerships while coordinating mooting and networking priorities for the year.',
-  },
-  {
-    name: 'Cyrilo Slotwiner',
-    position: 'Vice President/Finance',
-    headshotUrl:
-      cyriloHeadshot,
-    description:
-      'Supports event planning and member engagement, with a focus on mentoring first-year students entering legal studies.',
-  }
-]
+type CommitteeContent = {
+  members?: CommitteeMember[]
+}
 
 export function SocietyPage() {
+  const [members, setMembers] = useState<CommitteeMember[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function loadCommittee() {
+      try {
+        const response = await fetch(`${import.meta.env.BASE_URL}content/committee.json`)
+
+        if (!response.ok) {
+          throw new Error('Could not load committee content.')
+        }
+
+        const data: unknown = await response.json()
+
+        const parsedMembers = Array.isArray(data)
+          ? (data as CommitteeMember[])
+          : (data as CommitteeContent).members
+
+        if (!Array.isArray(parsedMembers)) {
+          throw new Error('Committee content is in an invalid format.')
+        }
+
+        setMembers(parsedMembers)
+      } catch (loadError) {
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : 'An unknown error occurred while loading the committee.',
+        )
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    void loadCommittee()
+  }, [])
+
   return (
     <main className="page-shell">
       <p className="page-eyebrow">The Society</p>
@@ -38,13 +67,20 @@ export function SocietyPage() {
 
       <section className="society-members">
         <h2>Meet the committee</h2>
+
+        {isLoading && <p>Loading committee...</p>}
+        {error && <p>{error}</p>}
+        {!isLoading && !error && members.length === 0 && (
+          <p>No committee members published yet.</p>
+        )}
+
         <div className="society-members__grid">
-          {societyMembers.map((member) => (
+          {members.map((member) => (
             <SocietyMemberCard
               key={member.name}
               name={member.name}
-              position={member.position}
-              headshotUrl={member.headshotUrl}
+              position={member.role}
+              headshotUrl={`${import.meta.env.BASE_URL}${member.image.replace(/^\//, '')}`}
               description={member.description}
             />
           ))}
